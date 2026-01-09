@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 极简练习场</title>
+    <style>
+        /* CSS 部分：你只需要知道这些 */
+        body { font-family: sans-serif; padding: 20px; }
+        
+        /* 1. 用来给 JS 控制显示/隐藏的类 */
+        .hidden { display: none; }
+        
+        /* 2. 用来给 JS 控制颜色的类 */
+        .error { color: red; font-weight: bold; }
+        .success { color: green; font-weight: bold; }
+
+        /* 简单的间距，纯为了不挤在一起，不学也没事 */
+        .box { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <!-- HTML 部分：JS 的操作对象 -->
+    
+    <div class="box">
+        <h3>输入区</h3>
+        <!-- 重点：id="myInput" -->
+        <input type="text" id="myInput" placeholder="在这里输入内容...">
+        
+        <!-- 重点：id="actionBtn" -->
+        <button id="actionBtn">执行 JS 逻辑</button>
+    </div>
+
+    <div class="box">
+        <h3>输出区</h3>
+        <!-- 重点：id="output" -->
+        <p id="output">这里将显示结果...</p>
+        
+        <!-- 重点：id="secretBox"，默认带了 hidden 类 -->
+        <div id="secretBox" class="hidden" style="background: yellow; padding: 5px;">
+            You will get better if U do what you really want.
+        </div>
+    </div>
+
+    <!-- JavaScript 部分：你的主战场 -->
+    <script>
+        // 1. 获取 HTML 元素 (这是 JS 和 HTML 的桥梁)
+        // 记住这个公式：const 变量名 = document.getElementById('ID名');
+        const inputEl = document.getElementById('myInput');
+        const myButton = document.getElementById('actionBtn');
+        const outputEl = document.getElementById('output');
+        const secretBoxEl = document.getElementById('secretBox');
+
+        // 2. 监听事件 (告诉 JS 什么时候干活)
+        // 记住这个公式：元素.addEventListener('click', function() { ... });
+        myButton.addEventListener('click', function() {
+            
+            // --- 下面就是纯粹的 JS 逻辑了 ---
+
+            // 获取用户输入的值
+            const value = inputEl.value;
+
+            // 逻辑判断
+            if (value === "") {
+                // 修改内容
+                outputEl.innerText = "❌ 错误：你什么都没输入！";
+                // 修改样式 (通过添加 class)
+                outputEl.className = "error"; 
+                // 隐藏彩蛋
+                secretBoxEl.classList.add('hidden');
+            } 
+            if(value === "better") {
+                outputEl.innerText = "你很棒";
+                outputEl.className = "success";
+                secretBoxEl.classList.remove("hidden");
+            }
+            else {
+                // 字符串拼接
+                outputEl.innerText = "你刚才输入了：" + value;
+                outputEl.className = ""; // 清除颜色
+                secretBoxEl.classList.add('hidden');
+            }
+            
+            // 在控制台打印日志 (按 F12 打开开发者工具 -> Console 查看)
+            // 这是学习 JS 逻辑最好的工具，完全不需要 HTML
+            console.log("当前输入的值是:", value);
+        });
+        inputEl.addEventListener("keypress", function(e) {
+            if(e.key === "Enter") {
+                myButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
