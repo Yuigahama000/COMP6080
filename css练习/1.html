@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* 大盒子：卡片 */
+        .card {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            margin: 100px auto; /* 放在页面中间方便观察 */
+            
+            /* --- 关键点 --- */
+            position: relative; /* 1. 试试把这一行删掉，看看红色的“标签”飞到哪去了？ */
+        }
+
+        /* 小盒子：标签 */
+        .tag {
+            width: 80px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            
+            /* --- 关键点 --- */
+            position: absolute; 
+            top: 0;             /* 贴顶 */
+            right: 0;           /* 贴右 */
+        }
+
+        .normal-text {
+            background-color: yellow;
+            /* 这个文字没有定位，它会正常显示在卡片里 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        我是卡片 (Relative)
+        <div class="tag">我是标签</div>
+        <div class="normal-text">我是正常文字，我会被标签遮住，因为标签飘起来了。</div>
+    </div>
+
+</body>
+</html>
