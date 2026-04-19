@@ -15,19 +15,17 @@ const PageList = () => {
       <Navbar />
 
       <div className='
-        w-full min-h-screen flex flex-col
+        w-full min-h-screen flex justify-center items-center
         relative pt-[80px] pb-[50px]
         '
       >
-        <div className='flex-1 flex justify-center items-center'>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/blanko" element={<Blanko />} />
-            <Route path="/slido" element={<Slido />} />
-            <Route path="/treto" element={<Treto />} />
-            <Route path="/tower" element={<Tower />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/blanko" element={<Blanko />} />
+          <Route path="/slido" element={<Slido />} />
+          <Route path="/treto" element={<Treto />} />
+          <Route path="/tower" element={<Tower />} />
+        </Routes>
 
         <Footer />
       </div>
